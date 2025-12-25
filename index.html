@@ -1,249 +1,226 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Invitación para Villa</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación para Villa</title>
 
-  <style>
-    :root{
-      --bg:#0b1220;
-      --card:rgba(255,255,255,.10);
-      --text:#eef3ff;
-      --muted:rgba(238,243,255,.78);
-      --accent:#ffb347; /* naranjo */
-      --radius:22px;
-    }
+<style>
+:root{
+  --bg:#0b1220;
+  --card:rgba(255,255,255,.10);
+  --text:#eef3ff;
+  --muted:rgba(238,243,255,.78);
+  --accent:#ffb347;
+  --radius:22px;
+}
 
-    *{
-      box-sizing:border-box;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-    }
+*{
+  box-sizing:border-box;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+}
 
-    body{
-      margin:0;
-      min-height:100vh;
-      background:
-        radial-gradient(1000px 600px at 50% 0%, rgba(255,180,71,.18), transparent 60%),
-        radial-gradient(900px 600px at 20% 20%, rgba(56,189,248,.14), transparent 60%),
-        var(--bg);
-      color:var(--text);
-      display:flex;
-      justify-content:center;
-      padding:28px 16px;
-    }
+body{
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(1000px 600px at 50% 0%, rgba(255,180,71,.18), transparent 60%),
+    radial-gradient(900px 600px at 20% 20%, rgba(56,189,248,.14), transparent 60%),
+    var(--bg);
+  color:var(--text);
+  display:flex;
+  justify-content:center;
+  padding:28px 16px;
+  overflow:hidden;
+}
 
-    .wrap{
-      width:min(900px,100%);
-      display:flex;
-      flex-direction:column;
-      gap:18px;
-    }
+.wrap{
+  width:min(900px,100%);
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  z-index:2;
+}
 
-    .hero{
-      background:var(--card);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:var(--radius);
-      padding:26px 24px;
-      text-align:center;
-      backdrop-filter: blur(10px);
-    }
+.hero{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--radius);
+  padding:28px 24px;
+  text-align:center;
+  backdrop-filter: blur(10px);
+}
 
-    .hero h1{
-      margin:0 0 12px 0;
-      font-size:34px;
-      font-weight:900;
-      letter-spacing:.3px;
-    }
+.hero h1{
+  margin:0 0 12px 0;
+  font-size:36px;
+  font-weight:900;
+}
 
-    .hero p{
-      margin:0;
-      font-size:18px;
-      color:var(--muted);
-      line-height:1.4;
-    }
+.hero p{
+  margin:0;
+  font-size:19px;
+  color:var(--muted);
+  line-height:1.5;
+}
 
-    .info{
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:var(--radius);
-      padding:22px 24px;
-      display:grid;
-      gap:12px;
-      backdrop-filter: blur(10px);
-    }
+.info{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--radius);
+  padding:22px 24px;
+  display:grid;
+  gap:12px;
+  backdrop-filter: blur(10px);
+}
 
-    .row{
-      font-size:18px;
-      font-weight:700;
-    }
+.row{
+  font-size:18px;
+  font-weight:800;
+}
 
-    .row span{
-      color:var(--muted);
-      font-weight:800;
-      margin-left:6px;
-    }
+.row span{
+  color:var(--muted);
+  margin-left:6px;
+}
 
-    .cta{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:10px;
-      margin-top:4px;
-    }
+.cta{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
 
-    .btn{
-      border:0;
-      cursor:pointer;
-      background:linear-gradient(180deg, #ffd28a, var(--accent));
-      color:#1a1200;
-      font-size:18px;
-      font-weight:900;
-      padding:16px 28px;
-      border-radius:16px;
-      box-shadow:0 14px 30px rgba(255,179,71,.35);
-      transition:.15s transform ease;
-    }
+.btn{
+  border:0;
+  cursor:pointer;
+  background:linear-gradient(180deg, #ffd28a, var(--accent));
+  color:#1a1200;
+  font-size:18px;
+  font-weight:900;
+  padding:16px 32px;
+  border-radius:16px;
+  box-shadow:0 14px 30px rgba(255,179,71,.35);
+}
 
-    .btn:hover{
-      transform:translateY(-1px);
-    }
+.hint{
+  font-size:14px;
+  color:var(--muted);
+  text-align:center;
+}
 
-    .hint{
-      font-size:14px;
-      color:var(--muted);
-      text-align:center;
-      margin:0;
-    }
+/* IMAGEN FLOTANTE */
+.perritos{
+  display:flex;
+  justify-content:center;
+  margin:24px 0;
+}
 
-    /* ===== IMAGEN FLOTANDO ===== */
-    .dogsWrap{
-      margin-top:10px;
-      width:100%;
-      display:flex;
-      justify-content:center;
-    }
+.perritos img{
+  width:420px;
+  max-width:100%;
+  border-radius:22px;
+  animation: flotar 4s ease-in-out infinite;
+  box-shadow:0 18px 40px rgba(0,0,0,.35);
+}
 
-    .dogs{
-      width:min(760px, 100%);
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:var(--radius);
-      padding:14px;
-      backdrop-filter: blur(8px);
-      animation: floaty 3.2s ease-in-out infinite;
-      box-shadow:0 18px 40px rgba(0,0,0,.25);
-    }
+.footer{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--radius);
+  padding:20px;
+  text-align:center;
+  font-size:16px;
+  color:var(--muted);
+}
 
-    .dogs img{
-      width:100%;
-      height:auto;
-      display:block;
-      border-radius:18px;
-    }
+.footer strong{
+  color:var(--text);
+  font-size:18px;
+}
 
-    @keyframes floaty{
-      0%,100%{ transform: translateY(0px); }
-      50%{ transform: translateY(-10px); }
-    }
+/* ANIMACIONES */
+@keyframes flotar{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+  100%{transform:translateY(0);}
+}
 
-    /* ===== MÚSICA ===== */
-    .music{
-      margin-top:8px;
-      width:100%;
-      display:flex;
-      justify-content:center;
-    }
+/* NIEVE */
+.snow{
+  position:fixed;
+  top:-10px;
+  width:8px;
+  height:8px;
+  background:white;
+  border-radius:50%;
+  opacity:.8;
+  animation: caer linear infinite;
+}
 
-    .music audio{
-      width:min(520px, 100%);
-      opacity:.95;
-    }
-
-    .footer{
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:var(--radius);
-      padding:18px 20px;
-      text-align:center;
-      color:var(--muted);
-      font-size:16px;
-      backdrop-filter: blur(8px);
-    }
-
-    .footer strong{
-      color:var(--text);
-      font-size:18px;
-    }
-  </style>
+@keyframes caer{
+  to{
+    transform: translateY(110vh);
+  }
+}
+</style>
 </head>
 
 <body>
-  <main class="wrap">
 
-    <!-- MENSAJE PRINCIPAL -->
-    <section class="hero">
-      <h1>Villa 🧡</h1>
-      <p>
-        Te invito a algo bonito,<br>
-        un momento solo para nosotros,<br>
-        sin apuros y con mucho cariño.
-      </p>
-    </section>
+<main class="wrap">
 
-    <!-- INFORMACIÓN -->
-    <section class="info">
-      <div class="row">🎬 Plan:<span>Ir al cine</span></div>
-      <div class="row">🍿 Película:<span>Avatar 3 (3D)</span></div>
-      <div class="row">📅 Día:<span>Sábado</span></div>
-      <div class="row">⏰ Hora:<span>12:00</span></div>
-    </section>
+<section class="hero">
+  <h1>Villa 🧡</h1>
+  <p>
+    Te invito a algo bonito,<br>
+    un momento solo para nosotros,<br>
+    sin apuros y con mucho cariño.
+  </p>
+</section>
 
-    <!-- BOTÓN -->
-    <section class="cta">
-      <button class="btn" id="btnWsp">Confirmar por WhatsApp 💬</button>
-      <p class="hint">
-        *Al tocar “Confirmar”, se abre WhatsApp con el mensaje listo 😊
-      </p>
+<section class="info">
+  <div class="row">🎬 Plan:<span>Ir al cine</span></div>
+  <div class="row">🍿 Película:<span>Avatar 3 (3D)</span></div>
+  <div class="row">📅 Día:<span>Sábado</span></div>
+  <div class="row">⏰ Hora:<span>12:00</span></div>
+</section>
 
-      <!-- IMAGEN FLOTANDO (sube tu imagen como perritos.jpg al repo) -->
-      <div class="dogsWrap">
-        <div class="dogs">
-          <img src="perritos.jpg" alt="Perritos salchicha navideños">
-        </div>
-      </div>
+<section class="cta">
+  <button class="btn" id="btnWsp">Confirmar por WhatsApp 💬</button>
+  <p class="hint">*Al tocar “Confirmar”, se abre WhatsApp con el mensaje listo 😊</p>
+</section>
 
-      <!-- MÚSICA (sube un mp3 como navidad.mp3 al repo) -->
-      <div class="music">
-        <audio controls loop>
-          <source src="navidad.mp3" type="audio/mpeg">
-          Tu navegador no soporta audio.
-        </audio>
-      </div>
+<section class="perritos">
+  <img src="perritos.jpg" alt="Perritos navideños">
+</section>
 
-      <p class="hint">
-        Si quieres que suene automático: en muchos celulares el autoplay se bloquea, por eso dejé controles.
-      </p>
-    </section>
+<section class="footer">
+  🐶🎄🐶🎅🐶<br><br>
+  Que tengas una feliz navidad.<br>
+  <strong>Te amo. Villa.</strong>
+</section>
 
-    <!-- CIERRE -->
-    <section class="footer">
-      🐶🎄🐶🎅🐶
-      <br><br>
-      Que tengas una feliz navidad.<br>
-      <strong>Te amo, Villa.</strong>
-    </section>
+</main>
 
-  </main>
+<script>
+const NUMERO_WHATSAPP = "56963933935";
+const mensaje = "Confirmo la cita 😊 ¿Te vienes a quedar tú o me quedo yo?";
+document.getElementById("btnWsp").onclick = () => {
+  window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`, "_blank");
+};
 
-  <script>
-    const NUMERO_WHATSAPP = "56963933935";
-    const mensaje = "Confirmo la cita 😊 ¿Te vienes a quedar tú o me quedo yo?";
-    const link = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+// nieve
+for(let i=0;i<40;i++){
+  const s=document.createElement("div");
+  s.className="snow";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=5+Math.random()*5+"s";
+  s.style.opacity=Math.random();
+  s.style.width=s.style.height=4+Math.random()*6+"px";
+  document.body.appendChild(s);
+}
+</script>
 
-    document.getElementById("btnWsp").addEventListener("click", () => {
-      window.open(link, "_blank");
-    });
-  </script>
 </body>
 </html>
