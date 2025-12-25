@@ -3,186 +3,174 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>🎄 Invitación para Villa</title>
-
+  <title>Invitación para Villa</title>
   <style>
     :root{
-      --glass: rgba(255,255,255,.10);
-      --border: rgba(255,255,255,.18);
+      --bg:#0b1220;
+      --card:#0f1b2e;
+      --soft:#12233c;
+      --text:#e9f0ff;
+      --muted:#b9c7e6;
+      --accent:#ffb300;
+      --radius:22px;
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
     }
+    *{box-sizing:border-box}
     body{
-      margin:0; min-height:100vh; display:grid; place-items:center;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      color:#fff;
-      background:
-        radial-gradient(circle at top, rgba(255,0,0,.16), transparent 45%),
-        radial-gradient(circle at bottom, rgba(34,197,94,.14), transparent 55%),
-        linear-gradient(180deg, #050816 0%, #0b1220 55%, #050816 100%);
-      overflow-x:hidden;
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background: radial-gradient(1200px 700px at 30% 10%, #1b2a49 0%, var(--bg) 60%);
+      color:var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      padding:22px;
     }
-
-    /* Estrellitas suaves */
-    .stars{
-      position:fixed; inset:0; pointer-events:none; opacity:.6;
-      background-image:
-        radial-gradient(2px 2px at 12% 20%, rgba(255,255,255,.75), transparent 40%),
-        radial-gradient(2px 2px at 28% 72%, rgba(255,255,255,.55), transparent 40%),
-        radial-gradient(1.5px 1.5px at 52% 35%, rgba(255,255,255,.65), transparent 40%),
-        radial-gradient(2px 2px at 78% 18%, rgba(255,255,255,.55), transparent 40%),
-        radial-gradient(1.5px 1.5px at 88% 62%, rgba(255,255,255,.40), transparent 40%);
+    .wrap{
+      width:min(920px, 100%);
     }
-
-    .wrap{ width:min(720px, 92vw); padding: 26px 0 48px; }
-
     .card{
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 22px 18px;
-      box-shadow: 0 26px 70px rgba(0,0,0,.45);
-      backdrop-filter: blur(10px);
-      text-align:center;
-      position:relative;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
     }
-
-    .badge{
-      display:inline-block; padding:8px 12px; border-radius:999px;
-      background: rgba(34,197,94,.18);
-      border: 1px solid rgba(34,197,94,.35);
-      font-weight: 800;
-      letter-spacing:.3px;
-      margin-bottom: 10px;
-    }
-
-    h1{ margin: 6px 0 6px; font-size: 30px; }
-    .sub{ margin:0 0 14px; opacity:.92; line-height:1.35; }
-
-    .movie{
-      margin: 14px auto 10px;
-      padding: 14px;
-      border-radius: 18px;
-      border: 1px solid rgba(0,255,255,.20);
-      background: rgba(0,255,255,.08);
-      text-align:left;
-    }
-    .movie b{ color: #7ffcff; }
-    .movie p{ margin: 7px 0; line-height:1.35; }
-
-    .btn{
-      display:inline-block; margin-top: 14px;
-      padding: 12px 16px; border-radius: 14px;
-      text-decoration:none; color:#08111f;
-      background: #fbbf24; font-weight: 900;
-    }
-
-    .mini{ font-size: 13px; opacity:.75; margin-top: 12px; }
-
-    /* “Perritos salchicha” cute (emoji + colores + gorrito) */
-    .dogs{
-      margin-top: 18px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-    .dog{
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      background: rgba(255,255,255,.08);
-      padding: 12px 10px;
-      display:grid; place-items:center;
-      animation: float 2.8s ease-in-out infinite;
-    }
-    .dog:nth-child(2){ animation-delay: .25s; }
-    .dog:nth-child(3){ animation-delay: .5s; }
-
-    .hat{
+    .title{
       font-size: 22px;
-      margin-bottom: 4px;
-      filter: drop-shadow(0 6px 10px rgba(0,0,0,.35));
+      font-weight: 800;
+      margin: 0 0 6px 0;
+      letter-spacing:.2px;
     }
-    .pup{
-      width: 88px; height: 88px; border-radius: 18px;
-      display:grid; place-items:center;
-      font-size: 42px;
-      border: 1px solid rgba(255,255,255,.18);
-      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+    .subtitle{
+      margin: 0 0 18px 0;
+      color: var(--muted);
+      line-height:1.35;
     }
-    .label{ margin-top: 8px; font-weight:800; opacity:.9; }
+    .info{
+      background: rgba(15,27,46,.6);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      padding: 16px 16px;
+      margin-top: 14px;
+    }
+    .row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      color: var(--text);
+      margin: 6px 0;
+      font-weight:600;
+    }
+    .row span{color:var(--muted); font-weight:700}
+    .btn{
+      margin: 18px auto 8px;
+      display:flex;
+      justify-content:center;
+    }
+    a.button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 14px 22px;
+      background: var(--accent);
+      color:#1b1400;
+      font-weight:900;
+      border-radius: 16px;
+      text-decoration:none;
+      box-shadow: 0 10px 24px rgba(255,179,0,.25);
+      transition:.18s transform ease;
+      min-width: 240px;
+    }
+    a.button:hover{transform: translateY(-1px)}
+    .note{
+      text-align:center;
+      color: var(--muted);
+      margin: 8px 0 16px;
+      font-weight:700;
+    }
 
-    .black{ background: linear-gradient(135deg, #0c0c0f, #2a2a33); }
-    .brown{ background: linear-gradient(135deg, #6b3f22, #a56a3c); }
-    .choco{ background: linear-gradient(135deg, #3b251b, #6a3a2b); }
-
-    @keyframes float{
-      0%,100%{ transform: translateY(0); }
-      50%{ transform: translateY(-6px); }
+    /* Imagen perritos “flotando” */
+    .dogsWrap{
+      margin: 12px auto 14px;
+      background: rgba(15,27,46,.55);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.25);
+      max-width: 820px;
+    }
+    .dogsWrap img{
+      width:100%;
+      display:block;
+      border-radius: 14px;
     }
 
     .final{
-      margin-top: 16px;
-      padding: 14px 14px;
+      margin-top: 10px;
+      text-align:center;
+      background: rgba(15,27,46,.55);
+      border: 1px solid rgba(255,255,255,.08);
       border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.08);
-      line-height:1.45;
+      padding: 14px 16px;
+      color: var(--text);
+      font-weight:800;
+      line-height:1.35;
     }
-
-    @media (max-width:520px){
-      .dogs{ grid-template-columns: repeat(2, 1fr); }
-    }
+    .final small{display:block; color:var(--muted); font-weight:800; margin-top:6px}
   </style>
 </head>
-
 <body>
-  <div class="stars"></div>
+  <main class="wrap">
+    <section class="card">
 
-  <div class="wrap">
-    <div class="card">
-      <div class="badge">🎁 Regalo de Navidad</div>
-
-      <h1>Villa 💛</h1>
-      <p class="sub">
-        Te hice una invitación especial (piola romántica 😌) <br>
-        para que este sábado hagamos un plan bacán juntos 🍿
+      <h1 class="title">Villa 🧡</h1>
+      <p class="subtitle">
+        Te invito a algo bonito, a un momento solo para nosotros, sin apuros, y con mucho cariño.
       </p>
 
-      <div class="movie">
-        <p>🎬 <b>Plan:</b> Ir al cine</p>
-        <p>🌌 <b>Película:</b> Avatar 3 (en <b>3D</b>)</p>
-        <p>📅 <b>Día:</b> Sábado</p>
-        <p>⏰ <b>Hora:</b> 12:00 (comienza la función)</p>
+      <div class="info">
+        <div class="row">🎬 <span>Plan:</span> Ir al cine</div>
+        <div class="row">🎞️ <span>Película:</span> (pon la que quieras)</div>
+        <div class="row">📅 <span>Día:</span> Sábado</div>
+        <div class="row">⏰ <span>Hora:</span> (pon la hora)</div>
       </div>
 
-      <a class="btn" href="https://wa.me/?text=Villa%20💛%20Acepto%20el%20plan%20de%20Avatar%203%20en%203D%20este%20sábado%20a%20las%2012:00%20🍿🎬"
-         target="_blank" rel="noopener">
-        Confirmar por WhatsApp 💬
-      </a>
+      <div class="btn">
+        <a class="button" id="waBtn" href="#" target="_blank" rel="noopener">
+          Confirmar por WhatsApp 💬
+        </a>
+      </div>
 
-      <p class="mini">*Al tocar “Confirmar”, se abre WhatsApp con el mensaje listo 😉</p>
+      <p class="note">*Al tocar “Confirmar”, se abre WhatsApp con el mensaje listo 😊</p>
 
-      <div class="dogs">
-        <div class="dog">
-          <div class="hat">🎅</div>
-          <div class="pup black">🐶</div>
-          <div class="label">Salchicha negro</div>
-        </div>
-        <div class="dog">
-          <div class="hat">🎅</div>
-          <div class="pup brown">🐶</div>
-          <div class="label">Salchicha café</div>
-        </div>
-        <div class="dog">
-          <div class="hat">🎅</div>
-          <div class="pup choco">🐶</div>
-          <div class="label">Salchicha chocolate</div>
-        </div>
+      <!-- AQUÍ VA LA IMAGEN LARGA -->
+      <div class="dogsWrap">
+        <img src="dogs.png" alt="Perritos salchicha navideños" />
       </div>
 
       <div class="final">
-        🎄 Que tengas una feliz navidad. <br>
-        Te amo. Te amo, villa.
+        🎄 Que tengas una feliz navidad.<br/>
+        Te amo, Villa.
       </div>
-    </div>
-  </div>
+
+    </section>
+  </main>
+
+  <script>
+    // ✅ Cambia este número:
+    const phone = "TU_NUMERO"; // Ej: "56912345678"
+
+    const message =
+`Holaaa Villa 🧡
+¿Confirmas nuestra cita? 😊
+Me encantaría ir contigo sin apuros y con mucho cariño.`;
+
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    document.getElementById("waBtn").href = url;
+  </script>
 </body>
 </html>
