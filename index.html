@@ -11,7 +11,7 @@
       --card:rgba(255,255,255,.10);
       --text:#eef3ff;
       --muted:rgba(238,243,255,.78);
-      --accent:#ffb347;
+      --accent:#ffb347; /* naranjo */
       --radius:22px;
     }
 
@@ -53,6 +53,7 @@
       margin:0 0 12px 0;
       font-size:34px;
       font-weight:900;
+      letter-spacing:.3px;
     }
 
     .hero p{
@@ -87,7 +88,7 @@
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap:12px;
+      gap:10px;
       margin-top:4px;
     }
 
@@ -115,24 +116,48 @@
       margin:0;
     }
 
-    /* 🔹 IMAGEN FLOTANTE */
-    .imagen-flotante{
+    /* ===== IMAGEN FLOTANDO ===== */
+    .dogsWrap{
+      margin-top:10px;
+      width:100%;
       display:flex;
       justify-content:center;
-      margin-top:18px;
     }
 
-    .imagen-flotante img{
+    .dogs{
+      width:min(760px, 100%);
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:var(--radius);
+      padding:14px;
+      backdrop-filter: blur(8px);
+      animation: floaty 3.2s ease-in-out infinite;
+      box-shadow:0 18px 40px rgba(0,0,0,.25);
+    }
+
+    .dogs img{
       width:100%;
-      max-width:360px;
-      animation: flotar 4s ease-in-out infinite;
-      filter: drop-shadow(0 18px 28px rgba(0,0,0,.35));
+      height:auto;
+      display:block;
+      border-radius:18px;
     }
 
-    @keyframes flotar{
-      0%{ transform:translateY(0); }
-      50%{ transform:translateY(-14px); }
-      100%{ transform:translateY(0); }
+    @keyframes floaty{
+      0%,100%{ transform: translateY(0px); }
+      50%{ transform: translateY(-10px); }
+    }
+
+    /* ===== MÚSICA ===== */
+    .music{
+      margin-top:8px;
+      width:100%;
+      display:flex;
+      justify-content:center;
+    }
+
+    .music audio{
+      width:min(520px, 100%);
+      opacity:.95;
     }
 
     .footer{
@@ -156,6 +181,7 @@
 <body>
   <main class="wrap">
 
+    <!-- MENSAJE PRINCIPAL -->
     <section class="hero">
       <h1>Villa 🧡</h1>
       <p>
@@ -165,6 +191,7 @@
       </p>
     </section>
 
+    <!-- INFORMACIÓN -->
     <section class="info">
       <div class="row">🎬 Plan:<span>Ir al cine</span></div>
       <div class="row">🍿 Película:<span>Avatar 3 (3D)</span></div>
@@ -172,20 +199,36 @@
       <div class="row">⏰ Hora:<span>12:00</span></div>
     </section>
 
+    <!-- BOTÓN -->
     <section class="cta">
       <button class="btn" id="btnWsp">Confirmar por WhatsApp 💬</button>
       <p class="hint">
         *Al tocar “Confirmar”, se abre WhatsApp con el mensaje listo 😊
       </p>
 
-      <!-- 🐶 IMAGEN -->
-      <div class="imagen-flotante">
-        <img src="perritos-navidad.png" alt="Perritos salchicha navideños">
+      <!-- IMAGEN FLOTANDO (sube tu imagen como perritos.jpg al repo) -->
+      <div class="dogsWrap">
+        <div class="dogs">
+          <img src="perritos.jpg" alt="Perritos salchicha navideños">
+        </div>
       </div>
+
+      <!-- MÚSICA (sube un mp3 como navidad.mp3 al repo) -->
+      <div class="music">
+        <audio controls loop>
+          <source src="navidad.mp3" type="audio/mpeg">
+          Tu navegador no soporta audio.
+        </audio>
+      </div>
+
+      <p class="hint">
+        Si quieres que suene automático: en muchos celulares el autoplay se bloquea, por eso dejé controles.
+      </p>
     </section>
 
+    <!-- CIERRE -->
     <section class="footer">
-      🐶🎄🐶🎅🐶  
+      🐶🎄🐶🎅🐶
       <br><br>
       Que tengas una feliz navidad.<br>
       <strong>Te amo, Villa.</strong>
@@ -204,4 +247,3 @@
   </script>
 </body>
 </html>
-
