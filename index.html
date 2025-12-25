@@ -1,176 +1,186 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Invitación para Villa</title>
+
   <style>
     :root{
       --bg:#0b1220;
-      --card:#0f1b2e;
-      --soft:#12233c;
-      --text:#e9f0ff;
-      --muted:#b9c7e6;
-      --accent:#ffb300;
+      --card:rgba(255,255,255,.10);
+      --text:#eef3ff;
+      --muted:rgba(238,243,255,.78);
+      --accent:#ffb347; /* naranjo */
       --radius:22px;
-      --shadow: 0 12px 30px rgba(0,0,0,.35);
     }
-    *{box-sizing:border-box}
+
+    *{
+      box-sizing:border-box;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+
     body{
       margin:0;
       min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      background: radial-gradient(1200px 700px at 30% 10%, #1b2a49 0%, var(--bg) 60%);
+      background:
+        radial-gradient(1000px 600px at 50% 0%, rgba(255,180,71,.18), transparent 60%),
+        radial-gradient(900px 600px at 20% 20%, rgba(56,189,248,.14), transparent 60%),
+        var(--bg);
       color:var(--text);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      padding:22px;
+      display:flex;
+      justify-content:center;
+      padding:28px 16px;
     }
+
     .wrap{
-      width:min(920px, 100%);
-    }
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: var(--radius);
-      padding: 26px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(8px);
-    }
-    .title{
-      font-size: 22px;
-      font-weight: 800;
-      margin: 0 0 6px 0;
-      letter-spacing:.2px;
-    }
-    .subtitle{
-      margin: 0 0 18px 0;
-      color: var(--muted);
-      line-height:1.35;
-    }
-    .info{
-      background: rgba(15,27,46,.6);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 18px;
-      padding: 16px 16px;
-      margin-top: 14px;
-    }
-    .row{
+      width:min(900px,100%);
       display:flex;
-      gap:10px;
-      align-items:center;
-      color: var(--text);
-      margin: 6px 0;
-      font-weight:600;
+      flex-direction:column;
+      gap:18px;
     }
-    .row span{color:var(--muted); font-weight:700}
-    .btn{
-      margin: 18px auto 8px;
-      display:flex;
-      justify-content:center;
-    }
-    a.button{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding: 14px 22px;
-      background: var(--accent);
-      color:#1b1400;
-      font-weight:900;
-      border-radius: 16px;
-      text-decoration:none;
-      box-shadow: 0 10px 24px rgba(255,179,0,.25);
-      transition:.18s transform ease;
-      min-width: 240px;
-    }
-    a.button:hover{transform: translateY(-1px)}
-    .note{
+
+    .hero{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:var(--radius);
+      padding:26px 24px;
       text-align:center;
-      color: var(--muted);
-      margin: 8px 0 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero h1{
+      margin:0 0 12px 0;
+      font-size:34px;
+      font-weight:900;
+      letter-spacing:.3px;
+    }
+
+    .hero p{
+      margin:0;
+      font-size:18px;
+      color:var(--muted);
+      line-height:1.4;
+    }
+
+    .info{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:var(--radius);
+      padding:22px 24px;
+      display:grid;
+      gap:12px;
+      backdrop-filter: blur(10px);
+    }
+
+    .row{
+      font-size:18px;
       font-weight:700;
     }
 
-    /* Imagen perritos “flotando” */
-    .dogsWrap{
-      margin: 12px auto 14px;
-      background: rgba(15,27,46,.55);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 18px;
-      padding: 14px;
-      box-shadow: 0 10px 24px rgba(0,0,0,.25);
-      max-width: 820px;
-    }
-    .dogsWrap img{
-      width:100%;
-      display:block;
-      border-radius: 14px;
+    .row span{
+      color:var(--muted);
+      font-weight:800;
+      margin-left:6px;
     }
 
-    .final{
-      margin-top: 10px;
-      text-align:center;
-      background: rgba(15,27,46,.55);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 18px;
-      padding: 14px 16px;
-      color: var(--text);
-      font-weight:800;
-      line-height:1.35;
+    .cta{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+      margin-top:4px;
     }
-    .final small{display:block; color:var(--muted); font-weight:800; margin-top:6px}
+
+    .btn{
+      border:0;
+      cursor:pointer;
+      background:linear-gradient(180deg, #ffd28a, var(--accent));
+      color:#1a1200;
+      font-size:18px;
+      font-weight:900;
+      padding:16px 28px;
+      border-radius:16px;
+      box-shadow:0 14px 30px rgba(255,179,71,.35);
+      transition:.15s transform ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+    }
+
+    .hint{
+      font-size:14px;
+      color:var(--muted);
+      text-align:center;
+      margin:0;
+    }
+
+    .footer{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:var(--radius);
+      padding:18px 20px;
+      text-align:center;
+      color:var(--muted);
+      font-size:16px;
+      backdrop-filter: blur(8px);
+    }
+
+    .footer strong{
+      color:var(--text);
+      font-size:18px;
+    }
   </style>
 </head>
+
 <body>
   <main class="wrap">
-    <section class="card">
 
-      <h1 class="title">Villa 🧡</h1>
-      <p class="subtitle">
-        Te invito a algo bonito, a un momento solo para nosotros, sin apuros, y con mucho cariño.
+    <!-- MENSAJE PRINCIPAL -->
+    <section class="hero">
+      <h1>Villa 🧡</h1>
+      <p>
+        Te invito a algo bonito,<br>
+        un momento solo para nosotros,<br>
+        sin apuros y con mucho cariño.
       </p>
-
-      <div class="info">
-        <div class="row">🎬 <span>Plan:</span> Ir al cine</div>
-        <div class="row">🎞️ <span>Película:</span> (Avatar 3)</div>
-        <div class="row">📅 <span>Día:</span> Sábado</div>
-        <div class="row">⏰ <span>Hora:</span> (12:00 hrs)</div>
-      </div>
-
-      <div class="btn">
-        <a class="button" id="waBtn" href="#" target="_blank" rel="noopener">
-          Confirmar por WhatsApp 💬
-        </a>
-      </div>
-
-      <p class="note">*Al tocar “Confirmar”, se abre WhatsApp con el mensaje listo 😊</p>
-
-      <!-- AQUÍ VA LA IMAGEN LARGA -->
-      <div class="dogsWrap">
-        <img src="dogs.png" alt="Perritos salchicha navideños" />
-      </div>
-
-      <div class="final">
-        🎄 Que tengas una feliz navidad.<br/>
-        Te amo, Villa.
-      </div>
-
     </section>
+
+    <!-- INFORMACIÓN -->
+    <section class="info">
+      <div class="row">🎬 Plan:<span>Ir al cine</span></div>
+      <div class="row">🍿 Película:<span>Avatar 3 (3D)</span></div>
+      <div class="row">📅 Día:<span>Sábado</span></div>
+      <div class="row">⏰ Hora:<span>12:00</span></div>
+    </section>
+
+    <!-- BOTÓN -->
+    <section class="cta">
+      <button class="btn" id="btnWsp">Confirmar por WhatsApp 💬</button>
+      <p class="hint">
+        *Al tocar “Confirmar”, se abre WhatsApp con el mensaje listo 😊
+      </p>
+    </section>
+
+    <!-- CIERRE -->
+    <section class="footer">
+      🐶🎄🐶🎅🐶  
+      <br><br>
+      Que tengas una feliz navidad.<br>
+      <strong>Te amo. Te amo, Villa.</strong>
+    </section>
+
   </main>
 
   <script>
-    // ✅ Cambia este número:
-    const phone = "TU_NUMERO"; // Ej: "56963933935"
+    const NUMERO_WHATSAPP = "56963933935";
+    const mensaje = "Confirmo la cita 😊 ¿Te vienes a quedar tú o me quedo yo?";
+    const link = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
 
-    const message =
-`Holaaa Villa 🧡
-¿Confirmas nuestra cita? 😊
-Me encantaría ir contigo sin apuros y con mucho cariño.`;
-
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-    document.getElementById("waBtn").href = url;
+    document.getElementById("btnWsp").addEventListener("click", () => {
+      window.open(link, "_blank");
+    });
   </script>
 </body>
 </html>
