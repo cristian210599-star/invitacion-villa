@@ -1,226 +1,302 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Invitación para Villa</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Invitación para Villa</title>
 
-<style>
-:root{
-  --bg:#0b1220;
-  --card:rgba(255,255,255,.10);
-  --text:#eef3ff;
-  --muted:rgba(238,243,255,.78);
-  --accent:#ffb347;
-  --radius:22px;
-}
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:rgba(255,255,255,.10);
+      --text:#eef3ff;
+      --muted:rgba(238,243,255,.78);
+      --accent:#ffb347; /* naranjo */
+      --radius:22px;
+    }
 
-*{
-  box-sizing:border-box;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-}
+    *{ box-sizing:border-box; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; }
 
-body{
-  margin:0;
-  min-height:100vh;
-  background:
-    radial-gradient(1000px 600px at 50% 0%, rgba(255,180,71,.18), transparent 60%),
-    radial-gradient(900px 600px at 20% 20%, rgba(56,189,248,.14), transparent 60%),
-    var(--bg);
-  color:var(--text);
-  display:flex;
-  justify-content:center;
-  padding:28px 16px;
-  overflow:hidden;
-}
+    body{
+      margin:0;
+      min-height:100vh;
+      background:
+        radial-gradient(1000px 600px at 50% 0%, rgba(255,180,71,.18), transparent 60%),
+        radial-gradient(900px 600px at 20% 20%, rgba(56,189,248,.14), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      display:flex;
+      justify-content:center;
+      padding:28px 16px;
+      position:relative;
+      overflow:hidden;
+    }
 
-.wrap{
-  width:min(900px,100%);
-  display:flex;
-  flex-direction:column;
-  gap:18px;
-  z-index:2;
-}
+    /* Nieve */
+    #snow{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:50;
+    }
 
-.hero{
-  background:var(--card);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:var(--radius);
-  padding:28px 24px;
-  text-align:center;
-  backdrop-filter: blur(10px);
-}
+    .wrap{
+      width:min(1000px,100%);
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      position:relative;
+      z-index:10; /* bajo la nieve */
+    }
 
-.hero h1{
-  margin:0 0 12px 0;
-  font-size:36px;
-  font-weight:900;
-}
+    .hero{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:var(--radius);
+      padding:26px 24px;
+      text-align:center;
+      backdrop-filter: blur(10px);
+    }
 
-.hero p{
-  margin:0;
-  font-size:19px;
-  color:var(--muted);
-  line-height:1.5;
-}
+    .hero h1{
+      margin:0 0 12px 0;
+      font-size:36px;
+      font-weight:900;
+      letter-spacing:.3px;
+    }
 
-.info{
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:var(--radius);
-  padding:22px 24px;
-  display:grid;
-  gap:12px;
-  backdrop-filter: blur(10px);
-}
+    .hero p{
+      margin:0;
+      font-size:18px;
+      color:var(--muted);
+      line-height:1.45;
+    }
 
-.row{
-  font-size:18px;
-  font-weight:800;
-}
+    /* Sección info + imagen al lado */
+    .side{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:16px;
+      align-items:stretch;
+    }
 
-.row span{
-  color:var(--muted);
-  margin-left:6px;
-}
+    .info{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:var(--radius);
+      padding:22px 24px;
+      display:grid;
+      gap:12px;
+      backdrop-filter: blur(10px);
+    }
 
-.cta{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:10px;
-}
+    .row{
+      font-size:18px;
+      font-weight:800;
+    }
 
-.btn{
-  border:0;
-  cursor:pointer;
-  background:linear-gradient(180deg, #ffd28a, var(--accent));
-  color:#1a1200;
-  font-size:18px;
-  font-weight:900;
-  padding:16px 32px;
-  border-radius:16px;
-  box-shadow:0 14px 30px rgba(255,179,71,.35);
-}
+    .row span{
+      color:var(--muted);
+      font-weight:900;
+      margin-left:6px;
+    }
 
-.hint{
-  font-size:14px;
-  color:var(--muted);
-  text-align:center;
-}
+    .imgCard{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:var(--radius);
+      padding:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      backdrop-filter: blur(10px);
+      overflow:hidden;
+    }
 
-/* IMAGEN FLOTANTE */
-.perritos{
-  display:flex;
-  justify-content:center;
-  margin:24px 0;
-}
+    .perritos{
+      width:100%;
+      max-width:420px;
+      height:auto;
+      display:block;
+      border-radius:16px;
+      box-shadow:0 16px 40px rgba(0,0,0,.35);
+      animation: floaty 3.5s ease-in-out infinite;
+      transform: translateZ(0);
+    }
 
-.perritos img{
-  width:420px;
-  max-width:100%;
-  border-radius:22px;
-  animation: flotar 4s ease-in-out infinite;
-  box-shadow:0 18px 40px rgba(0,0,0,.35);
-}
+    @keyframes floaty{
+      0%   { transform: translateY(0px); }
+      50%  { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
 
-.footer{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:var(--radius);
-  padding:20px;
-  text-align:center;
-  font-size:16px;
-  color:var(--muted);
-}
+    .cta{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+      margin-top:4px;
+    }
 
-.footer strong{
-  color:var(--text);
-  font-size:18px;
-}
+    .btn{
+      border:0;
+      cursor:pointer;
+      background:linear-gradient(180deg, #ffd28a, var(--accent));
+      color:#1a1200;
+      font-size:18px;
+      font-weight:900;
+      padding:16px 28px;
+      border-radius:16px;
+      box-shadow:0 14px 30px rgba(255,179,71,.35);
+      transition:.15s transform ease;
+    }
 
-/* ANIMACIONES */
-@keyframes flotar{
-  0%{transform:translateY(0);}
-  50%{transform:translateY(-10px);}
-  100%{transform:translateY(0);}
-}
+    .btn:hover{ transform:translateY(-1px); }
 
-/* NIEVE */
-.snow{
-  position:fixed;
-  top:-10px;
-  width:8px;
-  height:8px;
-  background:white;
-  border-radius:50%;
-  opacity:.8;
-  animation: caer linear infinite;
-}
+    .hint{
+      font-size:14px;
+      color:var(--muted);
+      text-align:center;
+      margin:0;
+    }
 
-@keyframes caer{
-  to{
-    transform: translateY(110vh);
-  }
-}
-</style>
+    /* Mensaje final grande */
+    .footer{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:var(--radius);
+      padding:22px 20px;
+      text-align:center;
+      backdrop-filter: blur(8px);
+    }
+
+    .footer .big{
+      font-size:28px;
+      font-weight:1000;
+      color:var(--text);
+      letter-spacing:.2px;
+      margin:0;
+    }
+
+    .footer .sub{
+      margin:10px 0 0 0;
+      font-size:22px;
+      font-weight:900;
+      color:var(--muted);
+    }
+
+    .footer .sub strong{
+      color:var(--text);
+      font-weight:1000;
+    }
+
+    /* Responsive */
+    @media (max-width: 820px){
+      .side{ grid-template-columns: 1fr; }
+      .hero h1{ font-size:32px; }
+      .footer .big{ font-size:24px; }
+      .footer .sub{ font-size:20px; }
+    }
+  </style>
 </head>
 
 <body>
+  <canvas id="snow"></canvas>
 
-<main class="wrap">
+  <main class="wrap">
 
-<section class="hero">
-  <h1>Villa 🧡</h1>
-  <p>
-    Te invito a algo bonito,<br>
-    un momento solo para nosotros,<br>
-    sin apuros y con mucho cariño.
-  </p>
-</section>
+    <!-- MENSAJE PRINCIPAL -->
+    <section class="hero">
+      <h1>Villa 🧡</h1>
+      <p>
+        Te invito a algo bonito,<br>
+        un momento solo para nosotros,<br>
+        sin apuros y con mucho cariño.
+      </p>
+    </section>
 
-<section class="info">
-  <div class="row">🎬 Plan:<span>Ir al cine</span></div>
-  <div class="row">🍿 Película:<span>Avatar 3 (3D)</span></div>
-  <div class="row">📅 Día:<span>Sábado</span></div>
-  <div class="row">⏰ Hora:<span>12:00</span></div>
-</section>
+    <!-- INFO + IMAGEN (AL LADO) -->
+    <section class="side">
+      <div class="info">
+        <div class="row">🎬 Plan:<span>Ir al cine</span></div>
+        <div class="row">🍿 Película:<span>Avatar 3 (3D)</span></div>
+        <div class="row">📅 Día:<span>Sábado</span></div>
+        <div class="row">⏰ Hora:<span>12:00</span></div>
+      </div>
 
-<section class="cta">
-  <button class="btn" id="btnWsp">Confirmar por WhatsApp 💬</button>
-  <p class="hint">*Al tocar “Confirmar”, se abre WhatsApp con el mensaje listo 😊</p>
-</section>
+      <div class="imgCard">
+        <!-- IMPORTANTE: el archivo debe llamarse EXACTO perritos.jpg y estar en la raíz -->
+        <img class="perritos" src="perritos.jpg" alt="Perritos navideños">
+      </div>
+    </section>
 
-<section class="perritos">
-  <img src="perritos.jpg" alt="Perritos navideños">
-</section>
+    <!-- BOTÓN -->
+    <section class="cta">
+      <button class="btn" id="btnWsp">Confirmar por WhatsApp 💬</button>
+      <p class="hint">
+        *Al tocar “Confirmar”, se abre WhatsApp con el mensaje listo 😊
+      </p>
+    </section>
 
-<section class="footer">
-  🐶🎄🐶🎅🐶<br><br>
-  Que tengas una feliz navidad.<br>
-  <strong>Te amo. Villa.</strong>
-</section>
+    <!-- CIERRE -->
+    <section class="footer">
+      <p class="big">🎄 Feliz Navidad 🎄</p>
+      <p class="sub"><strong>Te amo, Villa.</strong></p>
+    </section>
 
-</main>
+  </main>
 
-<script>
-const NUMERO_WHATSAPP = "56963933935";
-const mensaje = "Confirmo la cita 😊 ¿Te vienes a quedar tú o me quedo yo?";
-document.getElementById("btnWsp").onclick = () => {
-  window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`, "_blank");
-};
+  <script>
+    // WhatsApp
+    const NUMERO_WHATSAPP = "56963933935";
+    const mensaje = "Confirmo la cita 😊 ¿Te vienes a quedar tú o me quedo yo?";
+    const link = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
 
-// nieve
-for(let i=0;i<40;i++){
-  const s=document.createElement("div");
-  s.className="snow";
-  s.style.left=Math.random()*100+"vw";
-  s.style.animationDuration=5+Math.random()*5+"s";
-  s.style.opacity=Math.random();
-  s.style.width=s.style.height=4+Math.random()*6+"px";
-  document.body.appendChild(s);
-}
-</script>
+    document.getElementById("btnWsp").addEventListener("click", () => {
+      window.open(link, "_blank");
+    });
 
+    // Nieve suave (canvas)
+    const canvas = document.getElementById("snow");
+    const ctx = canvas.getContext("2d");
+
+    let W, H, flakes;
+    function resize(){
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+      const count = Math.min(140, Math.floor(W / 10));
+      flakes = Array.from({length: count}, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: 1 + Math.random() * 2.2,
+        vy: 0.6 + Math.random() * 1.4,
+        vx: -0.4 + Math.random() * 0.8,
+        a: 0.35 + Math.random() * 0.55
+      }));
+    }
+
+    function tick(){
+      ctx.clearRect(0,0,W,H);
+      for(const f of flakes){
+        f.y += f.vy;
+        f.x += f.vx;
+
+        if(f.y > H + 10){ f.y = -10; f.x = Math.random() * W; }
+        if(f.x < -10) f.x = W + 10;
+        if(f.x > W + 10) f.x = -10;
+
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255,255,255,${f.a})`;
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI*2);
+        ctx.fill();
+      }
+      requestAnimationFrame(tick);
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+    tick();
+  </script>
 </body>
 </html>
+
